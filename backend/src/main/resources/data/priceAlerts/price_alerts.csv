@@ -1,0 +1,4 @@
+user_id,product_id,target_price,triggered
+u1,P001,10.00,true
+u2,P020,5.70,true
+u3,P034,22.00,false

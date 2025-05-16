@@ -17,7 +17,6 @@ public class PriceAlert {
     private boolean triggered;
 
     public PriceAlert() {
-        // Constructor fără argumente necesar pentru OpenCSV
     }
 
     public PriceAlert(String userId, String productId, double targetPrice, boolean triggered) {
