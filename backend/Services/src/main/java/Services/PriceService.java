@@ -3,6 +3,7 @@ import Domain.Discount;
 import Domain.PriceAlert;
 import Domain.PriceHistoryEntry;
 import Domain.Product;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -12,7 +13,9 @@ import java.time.format.DateTimeFormatter;
 import static Loader.CsvDataLoader.extractStoreShortName;
 import static Utils.StringUtils.normalize;
 
-public class Service
+
+@Service
+public class PriceService
 {
 
     /**
@@ -61,14 +64,25 @@ public class Service
 
         return allDiscounts.stream()
                 .filter(d -> {
-                    LocalDate from = LocalDate.parse(d.getFromDate(), formatter);
-                    LocalDate to = LocalDate.parse(d.getToDate(), formatter);
-                    return !today.isBefore(from) && !today.isAfter(to);
+                    try {
+                        String rawFrom = d.getFromDate().trim();
+                        String rawTo = d.getToDate().trim();
+
+                        LocalDate from = LocalDate.parse(rawFrom, formatter);
+                        LocalDate to = LocalDate.parse(rawTo, formatter);
+
+                        return !today.isBefore(from) && !today.isAfter(to); // echivalent cu: from ≤ today ≤ to
+                    } catch (Exception e) {
+                        System.err.println("Eroare la parsare date pentru discount " + d.getProductId() +
+                                " → from: " + d.getFromDate() + ", to: " + d.getToDate());
+                        return false;
+                    }
                 })
                 .sorted(Comparator.comparingInt(Discount::getPercentageOfDiscount).reversed())
                 .limit(limit)
                 .collect(Collectors.toList());
     }
+
 
 
     /**

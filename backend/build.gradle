@@ -1,6 +1,6 @@
 plugins {
     id 'java'
-    id 'application'  // <-- adăugat
+    id 'application'
 }
 
 group = 'org.example'
@@ -18,11 +18,14 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }
 
+run {
+    standardInput = System.in
+}
+
 test {
     useJUnitPlatform()
 }
 
 application {
-    // înlocuiește cu pachetul + clasa ta Main
     mainClass = 'Main'
 }

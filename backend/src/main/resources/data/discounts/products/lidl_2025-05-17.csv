@@ -1,0 +1,11 @@
+product_id;product_name;brand;package_quantity;package_unit;product_category;price;store_name;date
+P121;lapte integral;Zuzu;1;l;lactate;6.10;Lidl;2025-05-17
+P122;făină albă 000;Băneasa;1;kg;alimente de bază;3.40;Lidl;2025-05-17
+P123;pere Conference;Generic;1;kg;legume și fructe;4.60;Lidl;2025-05-17
+P124;șampon fortifiant;Head & Shoulders;400;ml;îngrijire personală;17.90;Lidl;2025-05-17
+P125;apă minerală carbogazoasă;Borsec;2;l;băuturi;2.80;Lidl;2025-05-17
+P126;detergent pudră;Ariel;3;kg;produse de menaj;33.00;Lidl;2025-05-17
+P127;ciocolată cu lapte;Milka;100;g;dulciuri;5.40;Lidl;2025-05-17
+P128;ulei de floarea-soarelui;Bunica;1;l;alimente de bază;8.50;Lidl;2025-05-17
+P129;smântână 20%;Napolact;0.4;kg;lactate;5.30;Lidl;2025-05-17
+P130;bere blondă;Timișoreana;0.5;l;băuturi;3.00;Lidl;2025-05-17

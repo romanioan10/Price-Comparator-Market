@@ -1,0 +1,11 @@
+product_id;product_name;brand;package_quantity;package_unit;product_category;price;store_name;date
+P101;lapte integral;Zuzu;1;l;lactate;6.40;Profi;2025-05-17
+P102;făină albă 000;Băneasa;1;kg;alimente de bază;3.60;Profi;2025-05-17
+P103;pere Conference;Generic;1;kg;legume și fructe;4.90;Profi;2025-05-17
+P104;șampon fortifiant;Head & Shoulders;400;ml;îngrijire personală;18.50;Profi;2025-05-17
+P105;apă minerală carbogazoasă;Borsec;2;l;băuturi;2.90;Profi;2025-05-17
+P106;detergent pudră;Ariel;3;kg;produse de menaj;35.00;Profi;2025-05-17
+P107;ciocolată cu lapte;Milka;100;g;dulciuri;5.60;Profi;2025-05-17
+P108;ulei de floarea-soarelui;Bunica;1;l;alimente de bază;8.80;Profi;2025-05-17
+P109;smântână 20%;Napolact;0.4;kg;lactate;5.50;Profi;2025-05-17
+P110;bere blondă;Timișoreana;0.5;l;băuturi;3.20;Profi;2025-05-17
