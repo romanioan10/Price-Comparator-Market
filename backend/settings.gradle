@@ -5,3 +5,4 @@ include 'Services'
 
 
 include 'Client'
+include 'RestServices'

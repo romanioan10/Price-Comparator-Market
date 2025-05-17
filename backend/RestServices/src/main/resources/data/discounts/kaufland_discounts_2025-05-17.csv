@@ -1,0 +1,11 @@
+product_id;product_name;brand;package_quantity;package_unit;product_category;from_date;to_date;percentage_of_discount
+P111;lapte integral;Zuzu;1;l;lactate;2025-05-16;2025-05-22;9
+P112;făină albă 000;Băneasa;1;kg;alimente de bază;2025-05-16;2025-05-22;6
+P113;pere Conference;Generic;1;kg;legume și fructe;2025-05-16;2025-05-22;10
+P114;șampon fortifiant;Head & Shoulders;400;ml;îngrijire personală;2025-05-16;2025-05-22;18
+P115;apă minerală carbogazoasă;Borsec;2;l;băuturi;2025-05-16;2025-05-22;6
+P116;detergent pudră;Ariel;3;kg;produse de menaj;2025-05-16;2025-05-22;12
+P117;ciocolată cu lapte;Milka;100;g;dulciuri;2025-05-16;2025-05-22;4
+P118;ulei de floarea-soarelui;Bunica;1;l;alimente de bază;2025-05-16;2025-05-22;7
+P119;smântână 20%;Napolact;0.4;kg;lactate;2025-05-16;2025-05-22;10
+P120;bere blondă;Timișoreana;0.5;l;băuturi;2025-05-16;2025-05-22;5

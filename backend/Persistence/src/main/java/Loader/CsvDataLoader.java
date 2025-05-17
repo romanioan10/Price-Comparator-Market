@@ -5,6 +5,7 @@ import Domain.Product;
 import Domain.Discount;
 import Domain.PriceAlert;
 import Domain.PriceHistoryEntry;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.FileReader;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class CsvDataLoader
 {
     private static final String PRODUCT_DIR = "src/main/resources/data/products/";

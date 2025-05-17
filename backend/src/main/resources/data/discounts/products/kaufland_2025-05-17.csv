@@ -1,0 +1,11 @@
+product_id;product_name;brand;package_quantity;package_unit;product_category;price;store_name;date
+P111;lapte integral;Zuzu;1;l;lactate;6.20;Kaufland;2025-05-17
+P112;făină albă 000;Băneasa;1;kg;alimente de bază;3.50;Kaufland;2025-05-17
+P113;pere Conference;Generic;1;kg;legume și fructe;4.70;Kaufland;2025-05-17
+P114;șampon fortifiant;Head & Shoulders;400;ml;îngrijire personală;18.80;Kaufland;2025-05-17
+P115;apă minerală carbogazoasă;Borsec;2;l;băuturi;3.00;Kaufland;2025-05-17
+P116;detergent pudră;Ariel;3;kg;produse de menaj;34.00;Kaufland;2025-05-17
+P117;ciocolată cu lapte;Milka;100;g;dulciuri;5.70;Kaufland;2025-05-17
+P118;ulei de floarea-soarelui;Bunica;1;l;alimente de bază;8.60;Kaufland;2025-05-17
+P119;smântână 20%;Napolact;0.4;kg;lactate;5.60;Kaufland;2025-05-17
+P120;bere blondă;Timișoreana;0.5;l;băuturi;3.10;Kaufland;2025-05-17
