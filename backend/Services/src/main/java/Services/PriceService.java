@@ -1,4 +1,5 @@
 package Services;
+
 import Domain.Discount;
 import Domain.PriceAlert;
 import Domain.PriceHistoryEntry;
@@ -25,25 +26,24 @@ public class PriceService
      * @param allProducts  List of all available products.
      * @return A map where the key is the product name and the value is the cheapest Product object.
      */
-
     public Map<String, Product> optimizeBasket(List<String> basket, List<Product> allProducts) {
         Map<String, Product> result = new LinkedHashMap<>();
 
         for (String itemName : basket) {
-            String normItem = normalize(itemName);
+            String normItem = normalize(itemName); // Normalize input name for case/diacritic-insensitive comparison
 
             List<Product> matches = allProducts.stream()
-                    .filter(p -> normalize(p.getProductName()).contains(normItem))
+                    .filter(p -> normalize(p.getProductName()).contains(normItem)) // Match product names containing item
                     .collect(Collectors.toList());
 
             if (!matches.isEmpty()) {
                 Product cheapest = matches.stream()
-                        .min(Comparator.comparingDouble(Product::getPrice))
+                        .min(Comparator.comparingDouble(Product::getPrice)) // Find cheapest match
                         .orElse(null);
 
                 result.put(itemName, cheapest);
             } else {
-                result.put(itemName, null);
+                result.put(itemName, null); // If no match found, mark as null
             }
         }
 
@@ -71,19 +71,16 @@ public class PriceService
                         LocalDate from = LocalDate.parse(rawFrom, formatter);
                         LocalDate to = LocalDate.parse(rawTo, formatter);
 
-                        return !today.isBefore(from) && !today.isAfter(to); // echivalent cu: from ≤ today ≤ to
+                        return !today.isBefore(from) && !today.isAfter(to); // Check if discount is active
                     } catch (Exception e) {
-                        System.err.println("Eroare la parsare date pentru discount " + d.getProductId() +
-                                " → from: " + d.getFromDate() + ", to: " + d.getToDate());
+                        System.err.println("Eroare la parsare date pentru discount " + d.getProductId());
                         return false;
                     }
                 })
-                .sorted(Comparator.comparingInt(Discount::getPercentageOfDiscount).reversed())
-                .limit(limit)
+                .sorted(Comparator.comparingInt(Discount::getPercentageOfDiscount).reversed()) // Sort by discount % descending
+                .limit(limit) // Return only top X
                 .collect(Collectors.toList());
     }
-
-
 
     /**
      * Get the new discounts that are valid from yesterday to today.
@@ -99,12 +96,11 @@ public class PriceService
         return allDiscounts.stream()
                 .filter(d -> {
                     LocalDate from = LocalDate.parse(d.getFromDate(), formatter);
-                    return !from.isBefore(yesterday); // fromDate ∈ [yesterday, today]
+                    return !from.isBefore(yesterday); // Filter discounts that start today or yesterday
                 })
                 .sorted(Comparator.comparing(Discount::getFromDate).reversed())
                 .collect(Collectors.toList());
     }
-
 
     /**
      * Get the filtered price history based on store, brand, and category.
@@ -121,11 +117,11 @@ public class PriceService
                                                            String categoryFilter) {
         return allProducts.stream()
                 .filter(p -> storeFilter == null ||
-                        normalize(p.getStoreName()).contains(normalize(extractStoreShortName(storeFilter))))
+                        normalize(p.getStoreName()).contains(normalize(extractStoreShortName(storeFilter)))) // Filter by store
                 .filter(p -> brandFilter == null ||
-                        normalize(p.getBrand()).contains(normalize(brandFilter)))
+                        normalize(p.getBrand()).contains(normalize(brandFilter))) // Filter by brand
                 .filter(p -> categoryFilter == null ||
-                        normalize(p.getProductCategory()).contains(normalize(categoryFilter)))
+                        normalize(p.getProductCategory()).contains(normalize(categoryFilter))) // Filter by category
                 .map(p -> new PriceHistoryEntry(
                         p.getProductId(),
                         p.getProductName(),
@@ -136,7 +132,6 @@ public class PriceService
                 .collect(Collectors.toList());
     }
 
-
     /**
      * Get the best value products based on price per unit.
      *
@@ -145,9 +140,9 @@ public class PriceService
      */
     public List<Product> getBestValueProducts(List<Product> products) {
         return products.stream()
-                .filter(p -> p.getPrice() > 0 && p.getPackageQuantity() > 0)
+                .filter(p -> p.getPrice() > 0 && p.getPackageQuantity() > 0) // Exclude invalid products
                 .collect(Collectors.groupingBy(
-                        p -> normalize(p.getProductName()),
+                        p -> normalize(p.getProductName()), // Group by product name
                         Collectors.collectingAndThen(
                                 Collectors.minBy(Comparator.comparingDouble(p -> p.getPrice() / p.getPackageQuantity())),
                                 Optional::get
@@ -157,7 +152,6 @@ public class PriceService
                 .sorted(Comparator.comparing(p -> normalize(p.getProductName())))
                 .collect(Collectors.toList());
     }
-
 
     /**
      * Get the triggered price alerts based on the current product prices.
@@ -174,8 +168,8 @@ public class PriceService
             double targetPrice = alert.getTargetPrice();
 
             products.stream()
-                    .filter(p -> p.getProductId().equalsIgnoreCase(targetId))
-                    .filter(p -> p.getPrice() <= targetPrice)
+                    .filter(p -> p.getProductId().equalsIgnoreCase(targetId)) // Match by product ID
+                    .filter(p -> p.getPrice() <= targetPrice) // Check price threshold
                     .findFirst()
                     .ifPresent(p -> {
                         alert.setTriggered(true);
@@ -185,12 +179,4 @@ public class PriceService
 
         return triggered;
     }
-
-
-
-
-
-
-
-
 }

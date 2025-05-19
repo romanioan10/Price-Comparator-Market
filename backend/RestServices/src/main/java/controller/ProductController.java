@@ -31,7 +31,6 @@ public class ProductController {
     @GetMapping("/all")
     public List<Product> getAllProducts()
     {
-        System.out.println("=== LOAD PRODUCTS CALLED ===");
         return loader.loadAllProducts();
     }
 
@@ -74,7 +73,7 @@ public class ProductController {
 
     @GetMapping("/triggered-alerts")
     public List<PriceAlert> getTriggeredAlerts() {
-        List<PriceAlert> alerts = loader.loadAllAlerts(); // presupunem că ai metoda asta
+        List<PriceAlert> alerts = loader.loadAllAlerts();
         List<Product> all = loader.loadAllProducts();
         return priceService.getTriggeredAlerts(alerts, all);
     }

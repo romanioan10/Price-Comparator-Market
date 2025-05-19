@@ -22,30 +22,30 @@ public class CsvDataLoader
     private static final String DISCOUNT_DIR = "src/main/resources/data/discounts/";
     private static final String ALERT_DIR = "src/main/resources/data/priceAlerts/";
 
-    public List<Product> loadProducts(String filePath) {
-        String[] nameParts = extractStoreAndDate(filePath);
-        String storeName = nameParts[0];
-        String date = nameParts[1];
-
-        try {
-            List<Product> products = new CsvToBeanBuilder<Product>(new FileReader(filePath))
-                    .withType(Product.class)
-                    .withSeparator(';')
-                    .build()
-                    .parse();
-
-            products.forEach(p -> {
-                p.setStoreName(storeName);
-                p.setDate(date);
-            });
-
-            return products;
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return List.of();
-        }
-    }
+//    public List<Product> loadProducts(String filePath) {
+//        String[] nameParts = extractStoreAndDate(filePath);
+//        String storeName = nameParts[0];
+//        String date = nameParts[1];
+//
+//        try {
+//            List<Product> products = new CsvToBeanBuilder<Product>(new FileReader(filePath))
+//                    .withType(Product.class)
+//                    .withSeparator(';')
+//                    .build()
+//                    .parse();
+//
+//            products.forEach(p -> {
+//                p.setStoreName(storeName);
+//                p.setDate(date);
+//            });
+//
+//            return products;
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return List.of();
+//        }
+//    }
 
     public List<Discount> loadDiscounts(String filePath) {
         String storeName = extractStoreNameOnly(filePath);
@@ -140,7 +140,7 @@ public class CsvDataLoader
                     .parse();
 
             products.forEach(p -> {
-                p.setStoreName(storeName);  // aici se setează "lidl", nu path-ul complet
+                p.setStoreName(storeName);
                 p.setDate(date);
             });
 
