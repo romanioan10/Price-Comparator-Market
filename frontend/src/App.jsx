@@ -10,6 +10,7 @@ import {
     fetchTriggeredAlerts
 } from './services/api';
 import { extractStoreShortName } from './services/utils.js';
+import PriceHistoryChart from './components/PriceHistoryChart';
 
 export default function App() {
     const [selectedOption, setSelectedOption] = useState('');
@@ -18,7 +19,6 @@ export default function App() {
     const [results, setResults] = useState([]);
     const [allProducts, setAllProducts] = useState([]);
 
-    // filtre pentru istoric prețuri
     const [filterStore, setFilterStore] = useState('');
     const [filterBrand, setFilterBrand] = useState('');
     const [filterCategory, setFilterCategory] = useState('');
@@ -49,9 +49,7 @@ export default function App() {
                     console.error("Răspuns invalid de la optimizeBasket:", data);
                     setResults([]);
                 }
-            }
-
-            else if (selectedOption === 'top') {
+            } else if (selectedOption === 'top') {
                 const discounts = await fetchTopDiscounts(limit);
                 const products = await fetchAllProducts();
                 setAllProducts(products);
@@ -232,15 +230,12 @@ export default function App() {
                     ))
                 }
 
-                {selectedOption === 'history' &&
-                    results.map((entry, index) => (
-                        <div key={index}>
-                            <strong>{entry.productName}</strong> - {entry.price} RON<br />
-                            Magazin: {extractStoreShortName(entry.storeName)} | Dată: {entry.date}
-                            <hr />
-                        </div>
-                    ))
-                }
+                {selectedOption === 'history' && results.length > 0 && (
+                    <>
+                        <h2>Istoric prețuri: {results[0].productName}</h2>
+                        <PriceHistoryChart data={results} />
+                    </>
+                )}
             </div>
         </div>
     );
